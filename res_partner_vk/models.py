@@ -24,7 +24,7 @@ class res_partner(models.Model):
             vk = vals['vk'].strip()
             regex = r'^\w+$'
             if re.findall(regex, vk):
-                vk = "https://vk.com/"+vk
+                vk = "https://vk.com/" + vk
             else:
                 vk = re.sub("^(http|https)://(vkontakte|vk).(ru|com)",
                             "https://vk.com", vk)

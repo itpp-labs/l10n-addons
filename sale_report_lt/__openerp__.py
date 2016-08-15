@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 {
-    "name" : "Sale Reports - Lithuania",
-    "version" : "0.1",
-    "author" : "IT-Projects LLC, Ivan Yelizariev",
+    "name": "Sale Reports - Lithuania",
+    "version": "0.1",
+    "author": "IT-Projects LLC, Ivan Yelizariev",
     'license': 'GPL-3',
-    "category" : "Accounting",
-    "website" : "https://twitter.com/yelizariev",
+    "category": "Accounting",
+    "website": "https://twitter.com/yelizariev",
     "depends": ["account"],
     "data": [
         'report_invoice.xml',

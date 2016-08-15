@@ -1,17 +1,18 @@
+# -*- coding: utf-8 -*-
 {
-    "name" : "Partner info extension",
-    "version" : "0.1",
-    "author" : "IT-Projects LLC, Ivan Yelizariev",
+    "name": "Partner info extension",
+    "version": "0.1",
+    "author": "IT-Projects LLC, Ivan Yelizariev",
     'license': 'GPL-3',
-    "category" : "Sales Management",
-    "website" : "https://yelizariev.github.io",
+    "category": "Sales Management",
+    "website": "https://yelizariev.github.io",
     "description": """
     Добавляет ИНН-КПП, расчетный счет в виджет contact
 
     """,
-    "depends" : ['website', 'l10n_ru'],
-    "data":[
+    "depends": ['website', 'l10n_ru'],
+    "data": [
         'templates.xml'
-        ],
+    ],
     "installable": True
 }

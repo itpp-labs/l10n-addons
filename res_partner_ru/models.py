@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv,fields
+from openerp.osv import osv
 import werkzeug.utils
 import openerp
 from openerp.addons.base.ir import ir_qweb
+
 
 class Contact(osv.AbstractModel):
 
@@ -16,7 +17,7 @@ class Contact(osv.AbstractModel):
 
         id = getattr(record, field_name).id
         field_browse = self.pool[column._obj].browse(cr, openerp.SUPERUSER_ID, id, context={"show_address": True})
-        value = werkzeug.utils.escape( field_browse.name_get()[0][1] )
+        value = werkzeug.utils.escape(field_browse.name_get()[0][1])
 
         val = {
             'name': value.split("\n")[0],
@@ -33,11 +34,11 @@ class Contact(osv.AbstractModel):
 
         # my stuff
         if 'inn_kpp' in opf:
-            val.update({'inn':field_browse.inn,
-                        'kpp':field_browse.kpp})
+            val.update({'inn': field_browse.inn,
+                        'kpp': field_browse.kpp})
 
         if 'bank' in opf:
-            val.update({'bank':field_browse.bank_ids[0]})
+            val.update({'bank': field_browse.bank_ids[0]})
         # /my stuff
 
         html = self.pool["ir.ui.view"].render(cr, uid, "base.contact", val, engine='website.qweb', context=context).decode('utf8')
