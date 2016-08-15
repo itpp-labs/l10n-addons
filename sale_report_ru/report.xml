@@ -2,56 +2,56 @@
 <openerp>
     <data>
 
-		<report 
-			 id="report_sale_contract"
-			 string="Договор"
-			 model="sale.order" 
-			 report_type="qweb-pdf"
-			 file="sale_report_ru.report_salecontract" 
-			 name="sale_report_ru.report_salecontract"
-			 menu="True"
-			 />
+        <report 
+             id="report_sale_contract"
+             string="Договор"
+             model="sale.order" 
+             report_type="qweb-pdf"
+             file="sale_report_ru.report_salecontract" 
+             name="sale_report_ru.report_salecontract"
+             menu="True"
+             />
 
-		<report 
-			 id="report_sale_order_acceptance_act"
-			 string="Акт приема-передачи"
-			 model="sale.order" 
-			 report_type="qweb-pdf"
-			 file="sale_report_ru.report_acceptance_act_template" 
-			 name="sale_report_ru.report_acceptance_act_template" 
-			 menu="True"
-			 />
+        <report 
+             id="report_sale_order_acceptance_act"
+             string="Акт приема-передачи"
+             model="sale.order" 
+             report_type="qweb-pdf"
+             file="sale_report_ru.report_acceptance_act_template" 
+             name="sale_report_ru.report_acceptance_act_template" 
+             menu="True"
+             />
 
-		<report 
-			 id="report_account_invoice_acceptance_act"
-			 string="Акт приема-передачи"
-			 model="account.invoice" 
-			 report_type="qweb-pdf"
-			 file="sale_report_ru.report_acceptance_act_template_invoice" 
-			 name="sale_report_ru.report_acceptance_act_template_invoice" 
-			 menu="True"
-			 />
+        <report 
+             id="report_account_invoice_acceptance_act"
+             string="Акт приема-передачи"
+             model="account.invoice" 
+             report_type="qweb-pdf"
+             file="sale_report_ru.report_acceptance_act_template_invoice" 
+             name="sale_report_ru.report_acceptance_act_template_invoice" 
+             menu="True"
+             />
 
-		<report 
-			 id="sale.report_sale_order"
-			 string="Коммерческое предложение / Заказ"
-			 model="sale.order" 
-			 report_type="qweb-pdf"
-			 file="sale_report_ru.report_saleorder" 
-			 name="sale_report_ru.report_saleorder" 
-			 menu="True"
-			 />
-		<report 
-			 id="account.account_invoices"
-			 string="Счет"
-			 model="account.invoice"
-			 report_type="qweb-pdf"
-			 file="sale_report_ru.report_account_invoice" 
-			 name="sale_report_ru.report_account_invoice" 
-			 attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
-			 attachment_use="False"
-			 menu="True"
-			 />
+        <report 
+             id="sale.report_sale_order"
+             string="Коммерческое предложение / Заказ"
+             model="sale.order" 
+             report_type="qweb-pdf"
+             file="sale_report_ru.report_saleorder" 
+             name="sale_report_ru.report_saleorder" 
+             menu="True"
+             />
+        <report 
+             id="account.account_invoices"
+             string="Счет"
+             model="account.invoice"
+             report_type="qweb-pdf"
+             file="sale_report_ru.report_account_invoice" 
+             name="sale_report_ru.report_account_invoice" 
+             attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+             attachment_use="False"
+             menu="True"
+             />
 
 <template id="layout">
     <!-- Multicompany -->
@@ -71,19 +71,19 @@
             </div>
         </div>
         <div class="row">
-			 <div class="col-xs-8 text-left" style="">
-				<!--Договор № <span t-field="o.name"/> от <span t-esc="time.strftime('%d.%m.%Y', time.strptime(o.date_order,'%Y-%m-%d'))"/>-->
-			 </div>
+             <div class="col-xs-8 text-left" style="">
+                <!--Договор № <span t-field="o.name"/> от <span t-esc="time.strftime('%d.%m.%Y', time.strptime(o.date_order,'%Y-%m-%d'))"/>-->
+             </div>
 
-			 <div class="col-xs-4 text-right" style="">
+             <div class="col-xs-4 text-right" style="">
             <ul class="list-inline">
-				  <li>Страница:</li>
-				  <li><span class="page"/></li>
-				  <li>/</li>
-				  <li><span class="topage"/></li>
+                  <li>Страница:</li>
+                  <li><span class="page"/></li>
+                  <li>/</li>
+                  <li><span class="topage"/></li>
             </ul>
-			 </div>
-		  </div>
+             </div>
+          </div>
     </div>      
 </template>
 
@@ -93,17 +93,17 @@
 
 <template id="contract_clauses">
   <ol>
-	 <li>ПРЕДМЕТ ДОГОВОРА
-	 <ol>
-		<li>Заказчик поручает и оплачивает, а Исполнитель принимает на себя
-		обязанности по ...</li>
-		<li>Конкретное описание, объем и стоимость услуг определяются
-		Сторонами в соответствующих Приложениях к настоящему Договору.</li>
-		<li></li>
-	 </ol>
-	 </li>
-	 <li>...</li>
-	 <li>РЕКВИЗИТЫ И ПОДПИСИ СТОРОН</li>
+     <li>ПРЕДМЕТ ДОГОВОРА
+     <ol>
+        <li>Заказчик поручает и оплачивает, а Исполнитель принимает на себя
+        обязанности по ...</li>
+        <li>Конкретное описание, объем и стоимость услуг определяются
+        Сторонами в соответствующих Приложениях к настоящему Договору.</li>
+        <li></li>
+     </ol>
+     </li>
+     <li>...</li>
+     <li>РЕКВИЗИТЫ И ПОДПИСИ СТОРОН</li>
   </ol>
 </template>
 
@@ -111,12 +111,12 @@
   <b><t t-esc="partner_role"/></b>
   <br/>
   <t t-if="all_fields">
-	 <div t-field="partner_obj.partner_id"
-			t-field-options='{"widget": "contact", "fields": ["name", "address", "phone", "inn_kpp", "bank"], "no_marker": true}' />
+     <div t-field="partner_obj.partner_id"
+            t-field-options='{"widget": "contact", "fields": ["name", "address", "phone", "inn_kpp", "bank"], "no_marker": true}' />
   </t>
   <t  t-if="not all_fields">
-	 <div t-field="partner_obj.partner_id"
-			t-field-options='{"widget": "contact", "fields": ["name"], "no_marker": true}' />
+     <div t-field="partner_obj.partner_id"
+            t-field-options='{"widget": "contact", "fields": ["name"], "no_marker": true}' />
   </t>
 </template>
 <template id="contract_partner_sign">
@@ -128,26 +128,26 @@
 <template id="contract_partner_row">
   <div style="page-break-inside:avoid;">
   <div class="row">
-	 <div class="col-xs-6">
-		<t t-call="sale_report_ru.contract_partner">
-		  <t t-set="partner_role" t-value="'Заказчик'"/>
-		  <t t-set="partner_obj" t-value="o"/>
-		</t>
-	 </div>
-	 <div class="col-xs-6">
-		<t t-call="sale_report_ru.contract_partner">
-		  <t t-set="partner_role" t-value="'Исполнитель'"/>
-		  <t t-set="partner_obj" t-value="o.company_id"/>
-		</t>
-	 </div>
+     <div class="col-xs-6">
+        <t t-call="sale_report_ru.contract_partner">
+          <t t-set="partner_role" t-value="'Заказчик'"/>
+          <t t-set="partner_obj" t-value="o"/>
+        </t>
+     </div>
+     <div class="col-xs-6">
+        <t t-call="sale_report_ru.contract_partner">
+          <t t-set="partner_role" t-value="'Исполнитель'"/>
+          <t t-set="partner_obj" t-value="o.company_id"/>
+        </t>
+     </div>
   </div>
   <div class="row">
-	 <div class="col-xs-6">
-		<t t-call="sale_report_ru.contract_partner_sign"/>
-	 </div>
-	 <div class="col-xs-6">
-		<t t-call="sale_report_ru.contract_partner_sign"/>
-	 </div>
+     <div class="col-xs-6">
+        <t t-call="sale_report_ru.contract_partner_sign"/>
+     </div>
+     <div class="col-xs-6">
+        <t t-call="sale_report_ru.contract_partner_sign"/>
+     </div>
   </div>
   </div>
 </template>
@@ -157,130 +157,130 @@
   <h1 class="text-right">Приложение <t t-esc="appendix_name"/></h1>
   <h3 class="text-right">к договору № <span t-field="o.name"/> от <span t-field="o.date_order" t-field-options='{"format": "dd.MM.yyyy"}'/></h3>
   <t t-if="appendix_title">
-	 <h2 class="text-center"><t t-esc="appendix_title"/></h2>
+     <h2 class="text-center"><t t-esc="appendix_title"/></h2>
   </t>
   <t t-raw="0"/>
   <t t-call="sale_report_ru.contract_partner_row">
-	 <t t-set="all_fields" t-value="False"/>
+     <t t-set="all_fields" t-value="False"/>
   </t>
 </template>
 
 <template id="lines">
   <t t-if="o._name=='sale.order'">
-	 <t t-set="lines" t-value="o.order_line"/>
-	 <t t-set="currency_id" t-value="o.pricelist_id.currency_id"/>
-	 <t t-set="quantity_field" t-value="'product_uom_qty'"/>
-	 <t t-set="uom_field" t-value="'product_uom'"/>
+     <t t-set="lines" t-value="o.order_line"/>
+     <t t-set="currency_id" t-value="o.pricelist_id.currency_id"/>
+     <t t-set="quantity_field" t-value="'product_uom_qty'"/>
+     <t t-set="uom_field" t-value="'product_uom'"/>
   </t>
   <t t-if="o._name=='account.invoice'">
-	 <t t-set="lines" t-value="o.invoice_line"/>
-	 <t t-set="currency_id" t-value="o.currency_id"/>
-	 <t t-set="quantity_field" t-value="'quantity'"/>
-	 <t t-set="uom_field" t-value="'uos_id'"/>
+     <t t-set="lines" t-value="o.invoice_line"/>
+     <t t-set="currency_id" t-value="o.currency_id"/>
+     <t t-set="quantity_field" t-value="'quantity'"/>
+     <t t-set="uom_field" t-value="'uos_id'"/>
   </t>
-	 <table class="table table-bordered">
-		<thead>
-		  <tr>
-			 <th style="border-right:none;">Наименование</th>
-			 <th style="border-left:none;"/>
-			 <th class="text-right">Цена за ед.</th>
-			 <th class="text-right">Колич.</th>
-			 <th class="text-right">Цена</th>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr t-foreach="lines" t-as="l">
-			 <td style="border-right:none;">
-				<span t-esc="l.product_id and l.product_id.name or l.name"/>
-			 </td>
-			 <td style="border-left:none;">
-				<span t-if="l.discount"><span>скидка</span> <span t-esc="'%.0f' % l.discount"/>%</span>
-			 </td>
-			 <td class="text-right">
-				<span t-field="l.price_unit"/>
-			 </td>
-			 <td class="text-right"><span t-esc="l[quantity_field]"/> <span t-esc="l[uom_field].name"/>
-			 </td>
-			 <td class="text-right">
-				<span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
-			 </td>
-		  </tr>
-		</tbody>
-	 </table>
-	 <div class="row">
-		<div class="col-xs-4 pull-right">
-		  <table class="table table-condensed">
-			 <tr class="border-black">
-				<td>
-				  <strong>Итого без НДС</strong>
-				</td>
-				<td class="text-right">
-				  <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
-				</td>
-			 </tr>
-			 <tr>
-				<td><span>НДС</span></td>
-				<td class="text-right">
-				  <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
-				</td>
-			 </tr>
-			 <tr class="border-black">
-				<td>
-				  <strong>Итого</strong>
-				</td>
-				<td class="text-right">
-				  <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
-				</td>
-			 </tr>
-		  </table>
-		</div>
-	 </div>
-	 <!--
-	 <p t-field="o.note"/>
-	 <p t-if="o.payment_term">
-		<strong>Payment Term:</strong>
-		<span t-field="o.payment_term"/>
-	 </p>
-	 -->
+     <table class="table table-bordered">
+        <thead>
+          <tr>
+             <th style="border-right:none;">Наименование</th>
+             <th style="border-left:none;"/>
+             <th class="text-right">Цена за ед.</th>
+             <th class="text-right">Колич.</th>
+             <th class="text-right">Цена</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr t-foreach="lines" t-as="l">
+             <td style="border-right:none;">
+                <span t-esc="l.product_id and l.product_id.name or l.name"/>
+             </td>
+             <td style="border-left:none;">
+                <span t-if="l.discount"><span>скидка</span> <span t-esc="'%.0f' % l.discount"/>%</span>
+             </td>
+             <td class="text-right">
+                <span t-field="l.price_unit"/>
+             </td>
+             <td class="text-right"><span t-esc="l[quantity_field]"/> <span t-esc="l[uom_field].name"/>
+             </td>
+             <td class="text-right">
+                <span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
+             </td>
+          </tr>
+        </tbody>
+     </table>
+     <div class="row">
+        <div class="col-xs-4 pull-right">
+          <table class="table table-condensed">
+             <tr class="border-black">
+                <td>
+                  <strong>Итого без НДС</strong>
+                </td>
+                <td class="text-right">
+                  <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
+                </td>
+             </tr>
+             <tr>
+                <td><span>НДС</span></td>
+                <td class="text-right">
+                  <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
+                </td>
+             </tr>
+             <tr class="border-black">
+                <td>
+                  <strong>Итого</strong>
+                </td>
+                <td class="text-right">
+                  <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/>
+                </td>
+             </tr>
+          </table>
+        </div>
+     </div>
+     <!--
+     <p t-field="o.note"/>
+     <p t-if="o.payment_term">
+        <strong>Payment Term:</strong>
+        <span t-field="o.payment_term"/>
+     </p>
+     -->
 </template>
 
 
 <template id="contract_appendix_sale_order">
   <t t-call="sale_report_ru.contract_appendix">
-	 <t t-set="appendix_name" t-value="'№1'"/>
-	 <t t-set="appendix_title" t-value="'Перечень товаров и услуг'"/>
-	 <t t-call="sale_report_ru.lines"/>
+     <t t-set="appendix_name" t-value="'№1'"/>
+     <t t-set="appendix_title" t-value="'Перечень товаров и услуг'"/>
+     <t t-call="sale_report_ru.lines"/>
 
-	 <p t-field="o.note"/>
-	 <p t-if="o.payment_term">
-		<strong>Payment Term:</strong>
-		<span t-field="o.payment_term"/>
-	 </p>
+     <p t-field="o.note"/>
+     <p t-if="o.payment_term">
+        <strong>Payment Term:</strong>
+        <span t-field="o.payment_term"/>
+     </p>
   </t>
 </template>
 
 <template id="contract_appendix_other">
   <div>
   <t t-call="sale_report_ru.contract_appendix">
-	 <t t-set="appendix_name" t-value="'№2'"/>
-	 <t t-set="appendix_title" t-value="'Название приложения'"/>
-	 <div class="clauses">
-		<ol>
-		  <li>...
-		  <ol>
-			 <li>...</li>
-			 <li>...</li>
-			 <li>...</li>
-		  </ol>
-		  </li>
-		  <li>...</li>
-		</ol>
-	 </div>
+     <t t-set="appendix_name" t-value="'№2'"/>
+     <t t-set="appendix_title" t-value="'Название приложения'"/>
+     <div class="clauses">
+        <ol>
+          <li>...
+          <ol>
+             <li>...</li>
+             <li>...</li>
+             <li>...</li>
+          </ol>
+          </li>
+          <li>...</li>
+        </ol>
+     </div>
   </t>
   <t t-call="sale_report_ru.contract_appendix">
-	 <t t-set="appendix_name" t-value="'№3'"/>
-	 <t t-set="appendix_title" t-value="'Yet another appendix'"/>
-	 Content
+     <t t-set="appendix_name" t-value="'№3'"/>
+     <t t-set="appendix_title" t-value="'Yet another appendix'"/>
+     Content
   </t>
   </div>
 </template>
@@ -290,50 +290,50 @@
         <t t-foreach="docs" t-as="o">
             <t t-call="sale_report_ru.layout">
                 <div class="page">
-						<style type="text/css">
-						  .pagebreak{
-						  page-break-after:always;
-						  }
+                        <style type="text/css">
+                          .pagebreak{
+                          page-break-after:always;
+                          }
 
-						  .clauses OL {
-						  counter-reset: item;
-						  list-style-type:none;
-						  padding:0;
-						  }
-						  .clauses LI {margin: 0; }
-						  .clauses LI:before { content: counters(item, ".") ". "; counter-increment: item }
+                          .clauses OL {
+                          counter-reset: item;
+                          list-style-type:none;
+                          padding:0;
+                          }
+                          .clauses LI {margin: 0; }
+                          .clauses LI:before { content: counters(item, ".") ". "; counter-increment: item }
 
-						  .clauses>ol>li{
-						  font-size:22px;
-						  }
-						  .clauses>ol>li li, ol.normal li{
-						  font-size:14px;
-						  margin-left:0;
-						  }
-						</style>
+                          .clauses>ol>li{
+                          font-size:22px;
+                          }
+                          .clauses>ol>li li, ol.normal li{
+                          font-size:14px;
+                          margin-left:0;
+                          }
+                        </style>
                     <div class="oe_structure"/>
                     <h1 class="text-center">
                         <span>Договор № </span>
                         <span t-field="o.name"/>
-								<span><t t-call="sale_report_ru.contract_name"/></span>
+                                <span><t t-call="sale_report_ru.contract_name"/></span>
                     </h1>
                     <h3 class="text-center">
-						  г. <span t-field="o.company_id.city"/> <span t-field="o.date_order" t-field-options='{"format": "dd.MM.yyyy"}'/>
-						  </h3>
-						  <p>
-							 <span t-field="o.company_id.name"/>, именуемое в дальнейшем «Исполнитель», <span t-field="o.company_id.partner_id.represented_by"/> с одной стороны и <span t-field="o.partner_id.name"/>, именуемое(ый)(ая) в дальнейшем «Заказчик», <span t-field="o.company_id.partner_id.represented_by"/> с другой стороны, вместе именуемые «Стороны», заключили настоящий Договор о нижеследующем:
-						  </p>
-						  <div class="clauses">
-							 <t t-call="sale_report_ru.contract_clauses"/>
-						  </div>
-						  <t t-call="sale_report_ru.contract_partner_row">
-							 <t t-set="all_fields" t-value="True"/>
-						  </t>
-						  
-						  
+                          г. <span t-field="o.company_id.city"/> <span t-field="o.date_order" t-field-options='{"format": "dd.MM.yyyy"}'/>
+                          </h3>
+                          <p>
+                             <span t-field="o.company_id.name"/>, именуемое в дальнейшем «Исполнитель», <span t-field="o.company_id.partner_id.represented_by"/> с одной стороны и <span t-field="o.partner_id.name"/>, именуемое(ый)(ая) в дальнейшем «Заказчик», <span t-field="o.company_id.partner_id.represented_by"/> с другой стороны, вместе именуемые «Стороны», заключили настоящий Договор о нижеследующем:
+                          </p>
+                          <div class="clauses">
+                             <t t-call="sale_report_ru.contract_clauses"/>
+                          </div>
+                          <t t-call="sale_report_ru.contract_partner_row">
+                             <t t-set="all_fields" t-value="True"/>
+                          </t>
+                          
+                          
 
-						  <t t-call="sale_report_ru.contract_appendix_sale_order"/>
-						  <t t-call="sale_report_ru.contract_appendix_other"/>
+                          <t t-call="sale_report_ru.contract_appendix_sale_order"/>
+                          <t t-call="sale_report_ru.contract_appendix_other"/>
                 </div>
             </t>
         </t>
@@ -342,44 +342,44 @@
 
 <template id="report_acceptance_act_template">
   <t t-call="report.html_container">
-	 <t t-foreach="docs" t-as="o">
-		<t t-call="sale_report_ru.layout">
-		  <div class="page">
-			 <h1>Акт приема-передачи оказанных услуг (выполненных работ)</h1>
-			 <h3>№ <span t-esc="o._name=='sale.order' and o.name or o.number"/> от
-			 <t t-if="o._name=='sale.order' and o.date_acceptance">
-				<span t-field="o.date_acceptance" t-field-options='{"format": "dd.MM.yyyy"}'/>
-			 </t>
-			 <t t-if="o._name=='account.invoice'">
-				<span t-field="o.date_invoice" t-field-options='{"format": "dd.MM.yyyy"}'/>
-			 </t>
-			 </h3>
+     <t t-foreach="docs" t-as="o">
+        <t t-call="sale_report_ru.layout">
+          <div class="page">
+             <h1>Акт приема-передачи оказанных услуг (выполненных работ)</h1>
+             <h3>№ <span t-esc="o._name=='sale.order' and o.name or o.number"/> от
+             <t t-if="o._name=='sale.order' and o.date_acceptance">
+                <span t-field="o.date_acceptance" t-field-options='{"format": "dd.MM.yyyy"}'/>
+             </t>
+             <t t-if="o._name=='account.invoice'">
+                <span t-field="o.date_invoice" t-field-options='{"format": "dd.MM.yyyy"}'/>
+             </t>
+             </h3>
 
-			 <div>Договор №
-			 <t t-if="o._name=='sale.order'">
-				<span t-field="o.name"/><t  t-if="o.date_order"> от <span t-field="o.date_order" t-field-options='{"format": "dd.MM.yyyy"}'/></t>
-			 </t>
-			 <t t-if="o._name=='account.invoice'">
-				<span t-field="o.origin"/><t  t-if="o.date_origin"> от <span t-field="o.date_origin" t-field-options='{"format": "dd.MM.yyyy"}'/></t>
-			 </t>
-			 </div>
-			 <div style="height:30px"></div>
-			 <t t-call="sale_report_ru.lines"/>
-			 <p>Всего оказано услуг (выполнено работ) на сумму: <span t-field="o.amount_total_in_words"/>.</p>
-			 <p>
-			 Вышеперечисленные услуги (работы) оказаны (выполнены) полностью и в срок. Заказчик претензий по объемам, качеству и срокам оказания услуг (выполнения работ) не имеет.
-			 </p>
-			 <t t-call="sale_report_ru.contract_partner_row">
-				<t t-set="all_fields" t-value="False"/>
-			 </t>
-		  </div>
-		</t>
-	 </t>
+             <div>Договор №
+             <t t-if="o._name=='sale.order'">
+                <span t-field="o.name"/><t  t-if="o.date_order"> от <span t-field="o.date_order" t-field-options='{"format": "dd.MM.yyyy"}'/></t>
+             </t>
+             <t t-if="o._name=='account.invoice'">
+                <span t-field="o.origin"/><t  t-if="o.date_origin"> от <span t-field="o.date_origin" t-field-options='{"format": "dd.MM.yyyy"}'/></t>
+             </t>
+             </div>
+             <div style="height:30px"></div>
+             <t t-call="sale_report_ru.lines"/>
+             <p>Всего оказано услуг (выполнено работ) на сумму: <span t-field="o.amount_total_in_words"/>.</p>
+             <p>
+             Вышеперечисленные услуги (работы) оказаны (выполнены) полностью и в срок. Заказчик претензий по объемам, качеству и срокам оказания услуг (выполнения работ) не имеет.
+             </p>
+             <t t-call="sale_report_ru.contract_partner_row">
+                <t t-set="all_fields" t-value="False"/>
+             </t>
+          </div>
+        </t>
+     </t>
   </t>
 </template>
 <template id="report_acceptance_act_template_invoice">
-	<t t-call="sale_report_ru.report_acceptance_act_template">
-	</t>
+    <t t-call="sale_report_ru.report_acceptance_act_template">
+    </t>
 </template>
 
 <template id="report_saleorder">
@@ -397,7 +397,7 @@
                         <span>Предложение действительно до </span>
                         <span t-field="o.validity_date" t-field-options='{"format": "dd.MM.yyyy"}'/>
                     </h3>
-						  <t t-call="sale_report_ru.lines"/>
+                          <t t-call="sale_report_ru.lines"/>
                 </div>
             </t>
         </t>
@@ -438,72 +438,72 @@
     <t t-call="report.html_container">
         <t t-foreach="doc_ids" t-as="doc_id">
             <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'sale_report_ru.report_account_invoice_document')"/>
-		</t>
-	</t>
+        </t>
+    </t>
 </template>
 
 <template id="report_account_invoice_document">
-			<t t-set="lang" t-value="o.partner_id.lang or 'ru_RU'"/>
+            <t t-set="lang" t-value="o.partner_id.lang or 'ru_RU'"/>
             <t t-call="report.external_layout">
                 <div class="page">
-						<div t-field="o.company_id.partner_id"
-							  t-field-options='{"widget": "contact", "fields": ["name", "address", "phone"], "no_marker": true}' />
+                        <div t-field="o.company_id.partner_id"
+                              t-field-options='{"widget": "contact", "fields": ["name", "address", "phone"], "no_marker": true}' />
                     <h3>Образец заполнения платежного поручения</h3>
-						  <t t-call="sale_report_ru.payment_order_payee">
-							 <t t-set="partner_id" t-value="o.company_id.partner_id"/>
-							 <t t-set="bank_id" t-value="o.partner_bank_id"/>
-						  </t>
+                          <t t-call="sale_report_ru.payment_order_payee">
+                             <t t-set="partner_id" t-value="o.company_id.partner_id"/>
+                             <t t-set="bank_id" t-value="o.partner_bank_id"/>
+                          </t>
 
-			 <h1><span>Счет №</span> <span t-field="o.number"/> <t t-if="o.date_invoice"><span>от</span> <span t-field="o.date_invoice" t-field-options='{"format": "dd.MM.yyyy"}'/></t></h1>
-			 <div><span>Заказчик:</span> <span t-field="o.partner_id.name"/></div>
-			 <div><span>Плательщик:</span> <span t-field="o.partner_id.name"/></div>
-			 <div><span>Договор №</span> <span t-field="o.origin"/><t  t-if="o.date_origin"> <span>от</span> <span t-field="o.date_origin" t-field-options='{"format": "dd.MM.yyyy"}'/></t></div>
-			 <div style="height:30px"></div>
+             <h1><span>Счет №</span> <span t-field="o.number"/> <t t-if="o.date_invoice"><span>от</span> <span t-field="o.date_invoice" t-field-options='{"format": "dd.MM.yyyy"}'/></t></h1>
+             <div><span>Заказчик:</span> <span t-field="o.partner_id.name"/></div>
+             <div><span>Плательщик:</span> <span t-field="o.partner_id.name"/></div>
+             <div><span>Договор №</span> <span t-field="o.origin"/><t  t-if="o.date_origin"> <span>от</span> <span t-field="o.date_origin" t-field-options='{"format": "dd.MM.yyyy"}'/></t></div>
+             <div style="height:30px"></div>
 
-						  <t t-call="sale_report_ru.lines"/>
+                          <t t-call="sale_report_ru.lines"/>
 
   <t t-if="o._name=='sale.order'">
-	 <t t-set="lines" t-value="o.order_line"/>
-	 <t t-set="currency_id" t-value="o.pricelist_id.currency_id"/>
+     <t t-set="lines" t-value="o.order_line"/>
+     <t t-set="currency_id" t-value="o.pricelist_id.currency_id"/>
   </t>
   <t t-if="o._name=='account.invoice'">
-	 <t t-set="lines" t-value="o.invoice_line"/>
-	 <t t-set="currency_id" t-value="o.currency_id"/>
+     <t t-set="lines" t-value="o.invoice_line"/>
+     <t t-set="currency_id" t-value="o.currency_id"/>
   </t>
 
-						  <p t-if="lang=='ru_RU'">Всего наименований <span t-esc="len(lines)"/>, на сумму <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/></p>
-						  <style type="text/css">
-							 .sentence:first-letter {
-							     text-transform: uppercase;
-							 }
-						  </style>
-						  <p t-if="lang=='ru_RU'" class="sentence"><span t-field="o.amount_total_in_words"/></p>
+                          <p t-if="lang=='ru_RU'">Всего наименований <span t-esc="len(lines)"/>, на сумму <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency_id&quot;}"/></p>
+                          <style type="text/css">
+                             .sentence:first-letter {
+                                 text-transform: uppercase;
+                             }
+                          </style>
+                          <p t-if="lang=='ru_RU'" class="sentence"><span t-field="o.amount_total_in_words"/></p>
 
-						  <div t-if="lang=='ru_RU'" class="row" style="margin-top:20px;">
-							 <div class="col-xs-4  text-right">
-								<span>Руководитель</span>
-							 </div>
-							 <div class="col-xs-4" style="border-bottom:1px solid black;">&amp;nbsp;</div>
-							 <div class="col-xs-4">
-								<span t-field="o.company_id.partner_id.ceo"/>
-							 </div>
-							 
-						  </div>
+                          <div t-if="lang=='ru_RU'" class="row" style="margin-top:20px;">
+                             <div class="col-xs-4  text-right">
+                                <span>Руководитель</span>
+                             </div>
+                             <div class="col-xs-4" style="border-bottom:1px solid black;">&amp;nbsp;</div>
+                             <div class="col-xs-4">
+                                <span t-field="o.company_id.partner_id.ceo"/>
+                             </div>
+                             
+                          </div>
 
-						  <div t-if="lang=='ru_RU'" class="row" style="margin-top:30px;">
-							 <div class="col-xs-4  text-right">
-								<span>Главный бухгалтер</span>
-							 </div>
-							 <div class="col-xs-4" style="border-bottom:1px solid black;">&amp;nbsp;</div>
-							 <div class="col-xs-4">
-								<span t-field="o.company_id.partner_id.accountant"/>
-							 </div>
-							 
-						  </div>
+                          <div t-if="lang=='ru_RU'" class="row" style="margin-top:30px;">
+                             <div class="col-xs-4  text-right">
+                                <span>Главный бухгалтер</span>
+                             </div>
+                             <div class="col-xs-4" style="border-bottom:1px solid black;">&amp;nbsp;</div>
+                             <div class="col-xs-4">
+                                <span t-field="o.company_id.partner_id.accountant"/>
+                             </div>
+                             
+                          </div>
                 </div>
             </t>
 </template>
 
 
-	 </data>
+     </data>
 </openerp>
