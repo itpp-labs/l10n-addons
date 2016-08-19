@@ -20,5 +20,5 @@
     "data": [
         'report.xml',
     ],
-    "installable": True
+    "installable": False
 }
