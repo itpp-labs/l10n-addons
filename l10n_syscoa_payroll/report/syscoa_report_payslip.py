@@ -130,7 +130,7 @@ class ErgobitPayslipReport(report_sxw.rml_parse):
         ids = []
 
         for idx in range(len(lines_ids)):
-            if (lines_ids[idx].appears_on_payslip is True) and (int(lines_ids[idx].category_id) in category_ids):
+            if (lines_ids[idx].appears_on_payslip is True) and (lines_ids[idx].category_id in category_ids):
                 ids.append(lines_ids[idx].id)
         if ids:
             res = payslip_line.browse(ids)
@@ -153,7 +153,7 @@ class ErgobitPayslipReport(report_sxw.rml_parse):
         # Only basic, ded and alwn
         category_ids = env['hr.salary.rule.category'].search(
             [('code', 'in', [self.C_BASIC, self.C_DED, self.C_TAX, self.C_TAXX, self.C_ALWN, self.C_ALW])])
-        if int(psline.category_id) in category_ids:
+        if psline.category_id in category_ids:
             if psline.category_id.code in [self.C_ALW, self.C_BASIC]:
                 if psline.code in ['100', '210', '220', '230', '240']:
                     if round(float(psline.amount), 2) == 0.00:
@@ -178,7 +178,7 @@ class ErgobitPayslipReport(report_sxw.rml_parse):
         if round(float(psline.total), 2) == 0.00:
             return ''
         category_ids = env['hr.salary.rule.category'].search([('code', 'in', [self.C_RED, self.C_DED, self.C_TAX, self.C_PAYB, self.C_SYN, self.C_RETN])])
-        if int(psline.category_id) in category_ids:
+        if psline.category_id in category_ids:
             return ''
         if psline.code == '100':
             if psline.slip_id.contract_id.time_mod == 'fixed' and \
@@ -194,11 +194,11 @@ class ErgobitPayslipReport(report_sxw.rml_parse):
         env = odoo.api.Environment(self.cr, self.uid, {})
         if round(float(psline.total), 2) == 0.00:
             tax_cat_ids = env['hr.salary.rule.category'].search([('code', 'in', [self.C_TAX])])
-            if int(psline.category_id) in tax_cat_ids:  # for tax return 0 instead of ''
+            if psline.category_id in tax_cat_ids:  # for tax return 0 instead of ''
                 return 0
             return ''
         category_ids = env['hr.salary.rule.category'].search([('code', 'in', [self.C_RED, self.C_DED, self.C_TAX, self.C_PAYB, self.C_SYN, self.C_RETN])])
-        if int(psline.category_id) in category_ids:
+        if psline.category_id in category_ids:
             return formatl(psline.total)
         return ''
 
@@ -259,7 +259,7 @@ class ErgobitPayslipReport(report_sxw.rml_parse):
 
         ids = []
         for idx in range(len(lines_ids)):
-            if (lines_ids[idx].appears_on_payslip is True) and (int(lines_ids[idx].category_id) in category_ids):
+            if (lines_ids[idx].appears_on_payslip is True) and (lines_ids[idx].category_id in category_ids):
                 ids.append(lines_ids[idx].id)
         if ids:
             payslip_line_total = payslip_line.browse(ids)
