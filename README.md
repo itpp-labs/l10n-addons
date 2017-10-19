@@ -1,5 +1,5 @@
 # l10n-addons
-Odoo (OpenERP) localisation addons 
+Odoo localization addons 
 
 List of repositories:
 ---------------------
