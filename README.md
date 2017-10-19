@@ -4,7 +4,7 @@ Odoo (OpenERP) localisation addons
 List of repositories:
 ---------------------
 
-* https://github.com/yelizariev/addons-yelizariev
+* https://github.com/yelizariev/misc-addons
 * https://github.com/yelizariev/pos-addons
 * https://github.com/yelizariev/mail-addons
 * https://github.com/yelizariev/access-addons
