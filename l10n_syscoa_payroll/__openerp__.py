@@ -50,7 +50,7 @@
 
         'report/syscoa_report_payslip.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
