@@ -1,0 +1,258 @@
+# Copyright 2020 IT Projects Labs
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+name: "DINAR"
+
+on:
+  pull_request:
+
+jobs:
+  pre-commit:
+    name: "pre-commit"
+    # Let Quick Review/Tests run first
+    needs:
+      - review
+      - tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.7.x"
+      - name: Check Python Version
+        run:
+          echo "::set-env name=PY::$(python --version --version | sha256sum | cut -d' '
+          -f1)"
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
+      - uses: pre-commit/action@v1.0.1
+
+  review:
+    name: "Quick Review"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          path: REPO
+      - name: Checkout DINAR
+        uses: actions/checkout@v2
+        with:
+          path: DINAR
+          repository: itpp-labs/DINAR-fork
+          ref: master
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.7.x"
+      - name: Install python tools
+        run: |
+          pip install plumbum PyGithub pyyaml
+      - name: Analyze PR
+        run: |
+          # sets environment variables that available in next steps via $ {{ env.PR_... }} notation
+          cd REPO
+          python ../DINAR/workflow-files/analyze-modules.py updated ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} ${{ github.event.number }}
+      - name: HOW TO RUN LOCALLY
+        #if: "env.PR_MODULES != ''"
+        run: |
+          cat << 'EOF'
+          To test updates run:
+
+              WORKDIR=/tmp/DINAR/${{ github.repository }}-${{ github.event.number }}/
+              mkdir -p $WORKDIR
+              cd $WORKDIR
+              # TODO use fixed version instead of master
+              curl https://raw.githubusercontent.com/itpp-labs/DINAR/master/local-files/docker-compose.yml > docker-compose.yml
+              export REGISTRY=docker.pkg.github.com REPOSITORY=${{ github.repository }} REPO_NAME=$(echo ${{ github.repository }} | sed "s;.*/;;") VERSION=${{ github.event.pull_request.base.ref }}
+              git clone --depth=1 --branch $VERSION git@github.com:${{ github.repository }} pr-files
+              # Version in PR
+              REVISION=${{ github.event.pull_request.head.sha}}
+              # Version after merging
+              REVISION=pull/${{ github.event.number}}/merge
+              git -C pr-files fetch origin $REVISION
+              git -C pr-files checkout FETCH_HEAD
+              docker-compose pull
+              export MODULES=${{ env.PR_MODULES }}
+              export LOAD_MODULES=${{ env.PR_MODULES_LOAD }}
+          EOF
+
+          if [ "${{ github.event.pull_request.base.ref }}" == "10.0" ]; then
+          cat << 'EOF'
+
+              # workaround for odoo 10.0
+              docker-compose up -d odoo
+              docker-compose exec odoo click-odoo -i
+              # EXEC:
+              # env['ir.module.module'].update_list()
+              # env.cr.commit()
+              # exit()
+              docker-compose stop odoo
+
+          EOF
+
+          fi
+
+          cat << 'EOF'
+              docker-compose up
+          EOF
+          # TODO: post this message when Github guys make access to post message in PR
+          #> Sent by [DINAR :construction_worker_man:](https://github.com/itpp-labs/DINAR) via `.github/workflows/DINAR-pr.yml`
+      - name: Check Python Version
+        run:
+          echo "::set-env name=PY::$(python --version --version | sha256sum | cut -d' '
+          -f1)"
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit|${{ env.PY }}|${{ hashFiles('REPO/.pre-commit-config.yaml') }}
+      - name: Install pre-commit
+        run: |
+          pip install pre-commit
+      - name: PRE-COMMIT against updated files only
+        run: |
+          cd REPO
+          git fetch origin ${{ github.event.pull_request.base.ref }}
+          pre-commit run --show-diff-on-failure --color=always --origin HEAD --source origin/${{ github.event.pull_request.base.ref }}
+
+  tests:
+    name: "Quick Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          path: REPO
+      - name: Checkout DINAR
+        uses: actions/checkout@v2
+        with:
+          path: DINAR
+          repository: itpp-labs/DINAR-fork
+          ref: master
+      - name: Configure docker
+        run: |
+          bash DINAR/workflow-files/configure-docker.sh ${{ secrets.DINAR_TOKEN || secrets.GITHUB_TOKEN }}
+      - name: Install python tools
+        run: |
+          pip install plumbum PyGithub pyyaml
+      - name: Download Docker images with preinstalled modules
+        run: |
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml config
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml pull
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml up --no-start
+      - name: Analyze PR
+        run: |
+          # Get list of installed modules
+          ODOO_BASE_MODULES=$(docker inspect \
+          --format '{{ index .Config.Labels "dinar.odoo.modules"}}' \
+          dinar_odoo_1)
+
+          # sets environment variables that available in next steps via $ {{ env.PR_... }} notation
+          cd REPO
+          python ../DINAR/workflow-files/analyze-modules.py updated ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} ${{ github.event.number }} $ODOO_BASE_MODULES
+      - name: Install json parser
+        run: |
+          sudo apt-get install jq
+      - name: Install Additional Dependencies (Modules)
+        if: env.PR_MODULES_DEPS != ''
+        run: |
+          # Install new dependencies without tests
+          export MODULES="${{ env.PR_MODULES_DEPS }}"
+          export LOAD_MODULES="${{ env.PR_MODULES_LOAD }}"
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml config
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml up --abort-on-container-exit
+      - name: Install Additional Dependencies (Packages)
+        if: env.PR_DEPS != ''
+        run: |
+          # TODO https://github.com/itpp-labs/DINAR/issues/42
+          exit 1
+      - name: Prepare DINAR with additional dependencies
+        if: env.PR_MODULES_DEPS != '' || env.PR_DEPS != ''
+        run: |
+          # Save artifacts for local run and for integrations Tests
+          bash DINAR/workflow-files/save-docker-layers.sh new-deps/
+          echo $MODULES > new-deps/modules.txt
+      - name: Save DINAR with dependencies
+        if: env.PR_MODULES_DEPS != '' || env.PR_DEPS != ''
+        uses: actions/upload-artifact@v1
+        with:
+          name: new-deps
+          path: new-deps/
+      - name: Test updated modules
+        if: env.PR_MODULES != ''
+        run: |
+          export MODULES="${{ env.PR_MODULES }}"
+          export LOAD_MODULES="${{ env.PR_MODULES_LOAD }}"
+          export ODOO_EXTRA_ARG=--test-enable
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml config
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml up --abort-on-container-exit
+
+  tests-all:
+    name: Integration Tests
+    # Let Quick Review/Tests run first
+    # This job uses artifacts from "Quick Tests"
+    needs:
+      - tests
+      - review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          path: REPO
+      - name: Checkout DINAR
+        uses: actions/checkout@v2
+        with:
+          path: DINAR
+          repository: itpp-labs/DINAR-fork
+          ref: master
+      - name: Install python tools
+        run: |
+          pip install plumbum pyyaml
+      - name: Download Additional Dependencies artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: new-deps
+          path: new-deps/
+      - name: Check artifact
+        if: failure()
+        run: |
+          echo "::set-env name=ARTIFACT::0"
+      - name: Configure Docker
+        run: |
+          bash DINAR/workflow-files/configure-docker.sh ${{ secrets.DINAR_TOKEN }}
+      - name: Analyze PR
+        run: |
+          # sets environment variables that available in next steps via $ {{ env.PR_... }} notation
+          DEPS_MODULES=$(cat new-deps/modules.txt || true)
+          cd REPO
+          python ../DINAR/workflow-files/analyze-modules.py all "$DEPS_MODULES"
+      - name: Download base images
+        run: |
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml config
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml pull
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml up --no-start
+      - name: Apply new-deps artifact
+        if: env.ARTIFACT != '0'
+        run: |
+          bash DINAR/workflow-files/load-docker-layers.sh new-deps/
+
+      - name: Test all modules
+        run: |
+          export MODULES="${{ env.ALL_MODULES }}"
+          export LOAD_MODULES="${{ env.ALL_MODULES_LOAD }}"
+          export ODOO_EXTRA_ARG=--test-enable
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml config
+          docker-compose -p DINAR -f DINAR/workflow-files/docker-compose-DINAR-pr.yml up --abort-on-container-exit
