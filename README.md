@@ -1,14 +1,6 @@
 [![help@itpp.dev](https://itpp.dev/images/infinity-readme.png)](mailto:help@itpp.dev)
 # [11.0] Odoo (OpenERP) localisation addons 
 
-<br/>:heavy_check_mark: [l10n_ru2](https://apps.odoo.com/apps/modules/11.0/l10n_ru2/)
-<br/>:heavy_check_mark: [l10n_ru_hr_payroll](https://apps.odoo.com/apps/modules/11.0/l10n_ru_hr_payroll/)
-<br/>:heavy_check_mark: [l10n_syscoa_payroll](https://apps.odoo.com/apps/modules/11.0/l10n_syscoa_payroll/)
-<br/>:heavy_check_mark: [res_partner_ru](https://apps.odoo.com/apps/modules/11.0/res_partner_ru/)
-<br/>:heavy_check_mark: [res_partner_vk](https://apps.odoo.com/apps/modules/11.0/res_partner_vk/)
-<br/>:heavy_check_mark: [sale_report_kz](https://apps.odoo.com/apps/modules/11.0/sale_report_kz/)
-<br/>:heavy_check_mark: [sale_report_lt](https://apps.odoo.com/apps/modules/11.0/sale_report_lt/)
-<br/>:heavy_check_mark: [sale_report_ru](https://apps.odoo.com/apps/modules/11.0/sale_report_ru/)
 
 Other Addons
 ============
