@@ -1,3 +1,7 @@
+.. image:: https://itpp.dev/images/infinity-readme.png
+   :alt: Tested and maintained by IT Projects Labs
+   :target: https://itpp.dev
+
 =================
  Senegal Payroll
 =================
@@ -13,26 +17,19 @@ Generic Payroll Management Senegal.
     * Integrated with Holiday Management
     * Integrated with Accounting
 
-Credits
-=======
+Questions?
+==========
+
+To get an assistance on this module contact us by email :arrow_right: help@itpp.dev
 
 Contributors
-------------
+============
 * Ivan Yelizariev <yelizariev@it-projects.info>
-
-Sponsors
---------
-* `ERGOBIT Consulting <https://https://ergobit.org/>`_
 
 Further information
 ===================
 
-Demo: http://runbot.it-projects.info/demo/l10n-addons/10.0
+Odoo Apps Store: https://apps.odoo.com/apps/modules/10.0/l10n_syscoa_payroll/
 
-HTML Description: https://apps.odoo.com/apps/modules/10.0/l10n_syscoa_payroll/
 
-Usage instructions: `<doc/index.rst>`_
-
-Changelog: `<doc/changelog.rst>`_
-
-Tested on Odoo 10.0 ef60b24ce61064d7f7f5674ad2d694c02c442d0f
+Tested on `Odoo 10.0 <https://github.com/odoo/odoo/commit/ef60b24ce61064d7f7f5674ad2d694c02c442d0f>`_
