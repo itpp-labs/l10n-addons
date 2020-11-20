@@ -1,7 +1,7 @@
 [![help@itpp.dev](https://itpp.dev/images/infinity-readme.png)](mailto:help@itpp.dev)
 # [10.0] Odoo (OpenERP) localisation addons 
 
-<br/>:heavy_check_mark: [l10n_syscoa_payroll](https://apps.odoo.com/apps/modules/10.0/l10n_syscoa_payroll/)
+:heavy_check_mark: [l10n_syscoa_payroll](https://apps.odoo.com/apps/modules/10.0/l10n_syscoa_payroll/)
 
 Other Addons
 ============
