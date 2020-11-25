@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <openerp>
     <data noupdate="0">
-
-<!-- this the odoo's default -->
-<!--
+        <!-- this the odoo's default -->
+        <!--
         <record id="property_rule_employee_payslip" model="ir.rule">
             <field name="name">Employee Payslip</field>
             <field name="model_id" ref="model_hr_payslip"/>
@@ -11,7 +10,6 @@
             <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
         </record>
 -->
-
         <!-- ErgoBIT: HR Manager is allowed to create/edit all pyaslips -->
         <record id="hr_payroll.property_rule_manager_payslip" model="ir.rule">
             <field name="name">ErgoBIT Employee Payslip (HR Manager)</field>
@@ -19,7 +17,5 @@
             <field name="domain_force">[(1, '=', 1)]</field>
             <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]" />
         </record>
-
-
     </data>
 </openerp>

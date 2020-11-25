@@ -1,4 +1,4 @@
-#-*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Payroll Senegal
@@ -21,38 +21,35 @@
 ##############################################################################
 
 {
-    'name': 'Payroll - SN',
-    'summary': 'Senegal localization for Payroll application',
-    'version': '1.0',
-    'category': 'Localization',
-
-    'author': 'ERGOBIT Consulting, IT-Projects LLC',
-    'website': 'http://www.ergobit.org',
-    'images': [
-        'images/hr_company_contributions.jpeg',
-        'images/hr_salary_heads.jpeg',
-        'images/hr_salary_structure.jpeg',
-        'images/hr_employee_payslip.jpeg'
+    "name": "Payroll - SN",
+    "summary": "Senegal localization for Payroll application",
+    "version": "1.0",
+    "category": "Localization",
+    "author": "ERGOBIT Consulting, IT-Projects LLC",
+    "website": "http://www.ergobit.org",
+    "images": [
+        "images/hr_company_contributions.jpeg",
+        "images/hr_salary_heads.jpeg",
+        "images/hr_salary_structure.jpeg",
+        "images/hr_employee_payslip.jpeg",
     ],
-    'depends': [
-        'account',
-        'hr_payroll',
-        'hr_holidays_legal_leave',
-        'hr_holidays_compute_days',
+    "depends": [
+        "account",
+        "hr_payroll",
+        "hr_holidays_legal_leave",
+        "hr_holidays_compute_days",
     ],
-    'data': [
-        'views/l10n_syscoa_payroll_view.xml',
-        'l10n_syscoa_payroll_report.xml',
-
-        'data/l10n_syscoa_account_data.xml',
-        'data/l10n_syscoa_contract_data.xml',
-        'data/l10n_syscoa_payroll_data.xml',
-
-        'report/syscoa_report_payslip.xml',
+    "data": [
+        "views/l10n_syscoa_payroll_view.xml",
+        "l10n_syscoa_payroll_report.xml",
+        "data/l10n_syscoa_account_data.xml",
+        "data/l10n_syscoa_contract_data.xml",
+        "data/l10n_syscoa_payroll_data.xml",
+        "report/syscoa_report_payslip.xml",
     ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

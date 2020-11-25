@@ -20,10 +20,10 @@
 ##############################################################################
 
 {
-    'name': 'Russia - Accounting',
-    'version': '1.2',
-    'category': 'Localization/Account Charts',
-    'description': """
+    "name": "Russia - Accounting",
+    "version": "1.2",
+    "category": "Localization/Account Charts",
+    "description": """
 This module is the localization of OpenERP for Russian Federation.
 ==============================================================================
 Возможности:
@@ -36,22 +36,22 @@ This module is the localization of OpenERP for Russian Federation.
   - Дополнительный реквизит "Корр. счет" для банков
   - Автоматическая загрузка актуального справочника российских банков (пункт меню Учет-Настройки-Обновить банки, для этого нужно чтобы пользователь имел права финансового менеджера)
     """,
-    'author': 'OpenERP Russian Localization Team, Transparent Technologies, CodUP',
-    'website': 'https://launchpad.net/~openerp-l10n-ru, http://tterp.ru, http://codup.com',
-    'images': ['images/flag_ru.png'],
-    'depends': ['account'],
-    'data': [
-        'data/account_chart_template.xml',
-        'data/account.account.template.csv',
-        'data/okv.xml',
-        'data/res_country_data.xml',
-        'data/account.tax.template.csv',
-        'data/res.country.state.csv',
-        'data/res.partner.title.csv',
-        'l10n_ru_view.xml',
-        'data/account_chart_template_post.xml',
-        'data/account_chart_template.yml',
+    "author": "OpenERP Russian Localization Team, Transparent Technologies, CodUP",
+    "website": "https://launchpad.net/~openerp-l10n-ru, http://tterp.ru, http://codup.com",
+    "images": ["images/flag_ru.png"],
+    "depends": ["account"],
+    "data": [
+        "data/account_chart_template.xml",
+        "data/account.account.template.csv",
+        "data/okv.xml",
+        "data/res_country_data.xml",
+        "data/account.tax.template.csv",
+        "data/res.country.state.csv",
+        "data/res.partner.title.csv",
+        "l10n_ru_view.xml",
+        "data/account_chart_template_post.xml",
+        "data/account_chart_template.yml",
     ],
-    'installable': False,
+    "installable": False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

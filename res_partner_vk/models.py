@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, fields, api
-from openerp.exceptions import ValidationError
 import re
+
+from openerp import api, fields, models
+from openerp.exceptions import ValidationError
 
 
 class res_partner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
     vk = fields.Char(string="VK", size=64)
 
     @api.one
@@ -20,21 +21,25 @@ class res_partner(models.Model):
         return super(res_partner, self).create(vals)
 
     def _check_vk_field(self, vals):
-        if vals.get('vk'):
-            vk = vals['vk'].strip()
-            regex = r'^\w+$'
+        if vals.get("vk"):
+            vk = vals["vk"].strip()
+            regex = r"^\w+$"
             if re.findall(regex, vk):
-                vk = "https://vk.com/"+vk
+                vk = "https://vk.com/" + vk
             else:
-                vk = re.sub("^(http|https)://(vkontakte|vk).(ru|com)",
-                            "https://vk.com", vk)
-            vals['vk'] = vk
+                vk = re.sub(
+                    "^(http|https)://(vkontakte|vk).(ru|com)", "https://vk.com", vk
+                )
+            vals["vk"] = vk
         return vals
 
     @api.one
-    @api.constrains('vk')
+    @api.constrains("vk")
     def _validate_vk(self):
-        regex = r'^https://vk.com/\w+$'
+        regex = r"^https://vk.com/\w+$"
         if not re.findall(regex, self.vk):
-            raise ValidationError("VK address %s is not valid.\n For example, \
-                the address can be https://vk.com/durov" % self.vk)
+            raise ValidationError(
+                "VK address %s is not valid.\n For example, \
+                the address can be https://vk.com/durov"
+                % self.vk
+            )

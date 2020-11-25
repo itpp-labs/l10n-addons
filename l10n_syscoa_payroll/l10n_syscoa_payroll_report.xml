@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <openerp>
     <data>
-
         <report
             id="action_syscoa_report_payslip"
             model="hr.payslip"
@@ -10,8 +9,7 @@
             name="l10n_syscoa_payroll.syscoa_report_payslip"
             file="l10n_syscoa_payroll.syscoa_report_payslip"
         />
-
-         <report
+        <report
             id="hr_payroll.action_report_payslip"
             model="hr.payslip"
             string="Payslip"
@@ -19,8 +17,7 @@
             name="hr_payroll.report_payslip"
             file="hr_payroll.report_payslip"
             menu="False"
-             auto="False"
+            auto="False"
         />
-
     </data>
 </openerp>
