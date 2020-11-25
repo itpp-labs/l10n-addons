@@ -9,4 +9,3 @@ Installation
 
     sudo apt-get install language-pack-fr
     sudo dpkg-reconfigure locales
-
